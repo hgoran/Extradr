@@ -1,7 +1,5 @@
-# Extradr
-
 ## Server
-* Navigate to Extradr/server
-* run `npm install`
-* run `npm run dev`
-* navigate to [http://localhost:3090/](localhost:3090)
+* Navigate to **/server** directory
+* `npm install`
+* `npm run dev`
+* navigate to [localhost:3090](http://localhost:3090/)
