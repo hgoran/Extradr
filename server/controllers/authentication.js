@@ -25,11 +25,22 @@ exports.signup = function(req, res, next){
 	// Check if username or email exists
 	User.findOne({ $or: [{ username: username}, {email: email }] }, function(err, existingUser){
 		if(err){ return next(err); }
-		
+
 		// If username or email exists return an error
 		if(existingUser){
-			return res.status(422).send({ error: 'Username with given email already exists' });
+			if(email === existingUser.email){
+				return res.status(422).send({ error: 'Email already exists' });
+			} else if (username === existingUser.username){
+				return res.status(422).send({ error: 'Username is already taken' });
+			} else {
+				return res.status(422).send({ error: 'Username or email already exists' });
+			}	
 		}
+		
+		// if(existingUser){
+		// 	return res.status(422).send({ error: 'Username with given email already exists' });
+		// }
+
 		// If does not exists, create and save record
 		const user = new User({
 			username: username,
