@@ -8,13 +8,18 @@ function tokenForUser(user){
 	return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
 }
 
+exports.signin = function(req, res, next){
+	// users has already email and pass, just need to give them a token
+	res.send({ token: tokenForUser(req.user) });
+}
+
 exports.signup = function(req, res, next){
 	const username = req.body.username;
 	const email = req.body.email;
 	const password = req.body.password;
 
 	if (!username || !email || !password){
-		return res.status(422).send({ error: "Please provide username, email and password"});
+		return res.status(422).send({ error: 'Please provide username, email and password'});
 	}
 	// Do a check for username and password separately, and return a message error
 	// Check if username or email exists
@@ -40,9 +45,5 @@ exports.signup = function(req, res, next){
 		
 	});
 	
-	
-
-	
-
-	
 }
+
