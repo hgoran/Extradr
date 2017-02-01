@@ -1,3 +1,9 @@
+/*
+  0 - The rule has been disabled.
+  1 - The rule will emit a warning.
+  2 - The rule will emit an error.
+*/
+
 {
   // Extend existing configuration
   // from ESlint and eslint-plugin-react defaults.
@@ -24,6 +30,8 @@
     "no-underscore-dangle": 1,
     // Default to single quotes and raise an error if something
     // else is used
-    "quotes": [2, "single"]
+    "quotes": [2, "single"],
+    "no-mixed-spaces-and-tabs": [0, "smart-tabs"]
+
   }
 }
