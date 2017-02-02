@@ -6,20 +6,20 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack",
-    "stats": "webpack --profile --json > stats.json",
-    "test:lint": "eslint . --ext .js --ext .jsx || true"
+    "stats": "webpack --profile --json > stats.json"
   },
   "keywords": [],
   "author": "Damir Cosic",
   "license": "ISC",
   "dependencies": {
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
     "babel-preset-stage-1": "^6.1.18",
     "lodash": "^3.10.1",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
     "react-redux": "^4.0.0",
     "react-router": "^2.0.1",
-    "redux": "^3.0.4"
+    "redux": "^3.0.4",
+    "redux-form": "^5.3.4"
   },
   "devDependencies": {
     "babel-core": "^6.17.0",
@@ -30,9 +30,6 @@
     "babel-preset-react-hmre": "^1.1.1",
     "clean-webpack-plugin": "^0.1.13",
     "css-loader": "^0.25.0",
-    "eslint": "^3.7.1",
-    "eslint-loader": "^1.5.0",
-    "eslint-plugin-react": "^6.4.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.22.0",
     "purifycss-webpack-plugin": "^2.0.3",

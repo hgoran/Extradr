@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import Header from './header';
 
 export default class App extends Component {
   render() {
     return (
-      	<div className="container">
-      		<h1 className="text-info jumbotron">
-      			React/Redux Starter
+      	<div>
+      		<Header />
+      		<h1>
+      			{this.props.children}
       		</h1>
       	</div>
     );

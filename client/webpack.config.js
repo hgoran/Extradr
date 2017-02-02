@@ -28,13 +28,6 @@ const common = {
         extensions: ['', '.js','.jsx']
     },
     module: {
-        preLoaders: [
-          {
-            test: /\.jsx?$/,
-            loaders: ['eslint'],
-            include: PATHS.app
-          }
-        ],
         loaders: [
             {
                 test: /\.jsx?$/,
