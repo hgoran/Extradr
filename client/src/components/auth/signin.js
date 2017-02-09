@@ -9,7 +9,15 @@ class Signin extends Component{
 		// need to do sth when user login
 		this.props.signinUser({email, password});
 	}
-	
+	renderAlert(){
+		if (this.props.errorMessage) {
+			return(
+				<div className="alert alert-danger">
+					<strong>Opps!</strong> {this.props.errorMessage}
+				</div>
+			);
+		}
+	}
 	render(){
 		const {handleSubmit, fields: { email, password}} = this.props;
 		return(
@@ -22,13 +30,19 @@ class Signin extends Component{
 					<label>Password:</label>
 					<input type="text" className="form-control" {...password}/>
 				</fieldset>
+				{ this.renderAlert() }
 				<button action="submit" className="btn btn-default">Signin</button>
 			</form>
 		);
 	}
 }
 
+function mapStateToProps(state){
+	return { errorMessage: state.auth.error };
+}
+
+
 export default reduxForm({
 	form: 'signin',
 	fields: ['email', 'password']
-}, null, actions)(Signin);
+}, mapStateToProps, actions)(Signin);
