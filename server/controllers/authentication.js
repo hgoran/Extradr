@@ -9,41 +9,39 @@ function tokenForUser(user){
 }
 
 exports.signin = function(req, res, next){
-	// users has already email and pass, just need to give them a token
+	// user has already email and pass, just need to give them a token
 	res.send({ token: tokenForUser(req.user) });
 }
 
 exports.signup = function(req, res, next){
-	const username = req.body.username;
 	const email = req.body.email;
 	const password = req.body.password;
 
-	if (!username || !email || !password){
-		return res.status(422).send({ error: 'Please provide username, email and password'});
-	}
+	// if (!username || !email || !password){
+	// 	return res.status(422).send({ error: 'Please provide username, email and password'});
+	// }
 	// Do a check for username and password separately, and return a message error
-	// Check if username or email exists
-	User.findOne({ $or: [{ username: username}, {email: email }] }, function(err, existingUser){
+	// Check if email exists
+	User.findOne({email: email }, function(err, existingUser){
 		if(err){ return next(err); }
 
 		// If username or email exists return an error
-		if(existingUser){
-			if(email === existingUser.email){
-				return res.status(422).send({ error: 'Email already exists' });
-			} else if (username === existingUser.username){
-				return res.status(422).send({ error: 'Username is already taken' });
-			} else {
-				return res.status(422).send({ error: 'Username or email already exists' });
-			}	
-		}
-		
 		// if(existingUser){
-		// 	return res.status(422).send({ error: 'Username with given email already exists' });
+		// 	if(email === existingUser.email){
+		// 		return res.status(422).send({ error: 'Email already exists' });
+		// 	} else if (username === existingUser.username){
+		// 		return res.status(422).send({ error: 'Username is already taken' });
+		// 	} else {
+		// 		return res.status(422).send({ error: 'Username or email already exists' });
+		// 	}	
 		// }
+		
+		if(existingUser){
+			return res.status(422).send({ error: 'Email is already in use' });
+		}
 
 		// If does not exists, create and save record
 		const user = new User({
-			username: username,
 			email: email,
 			password: password
 		});

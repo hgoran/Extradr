@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt-nodejs');
 
 // Define our model
 const userSchema = new Schema({
-	username: { type: String, unique: true },
 	email: { type: String, unique: true, lowercarse: true },
 	password: String
 });
@@ -38,3 +37,4 @@ userSchema.methods.comparePassword = function(candidatePassword, callback){
 const ModelClass = mongoose.model('user', userSchema);
 // Export the model
 module.exports = ModelClass;
+
